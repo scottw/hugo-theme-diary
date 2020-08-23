@@ -23,7 +23,8 @@
                             <div class="post-item-image-wrapper">
                             <div class="post-item-image"
                             {{ if $image }}
-                                 style="background-image: url('{{ $image.Permalink }}')"
+                                 {{ $thumbnailImg := $image.Fit "460x240 CatmullRom q90" }}
+                                 style="background-image: url('{{ $thumbnailImg.RelPermalink }}')"
                             {{ else }}
                                  style="background-image: url('{{ $featured_image | absURL}}')"
                             {{ end }}
