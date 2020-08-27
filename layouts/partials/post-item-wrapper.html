@@ -1,0 +1,27 @@
+<div class="post-item-wrapper">
+    <div class="post-item post-item-no-divider">  <!-- post-item-no-gaps for taxonomy -->
+        <div class="post-item-info-wrapper">
+            <div class="post-item-title">
+                {{.Title}}
+            </div>
+            <div class="post-item-summary">
+                {{.Description}}
+            </div>
+            {{ partial "post-item-meta.html" . }}
+        </div>
+        {{ $featured_image := .Params.featured_image }}
+        {{ if $featured_image }}
+            {{ $image := .Resources.GetMatch (.Params.featured_image) }}
+            <div class="post-item-image-wrapper">
+            <div class="post-item-image"
+            {{ if $image }}
+                 {{ $thumbnailImg := $image.Fit "460x240 CatmullRom q90" }}
+                 style="background-image: url('{{ $thumbnailImg.RelPermalink }}')"
+            {{ else }}
+                 style="background-image: url('{{ $featured_image | absURL}}')"
+            {{ end }}
+            ></div>
+            </div>
+        {{ end }}
+    </div>
+</div>
