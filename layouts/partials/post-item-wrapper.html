@@ -2,7 +2,7 @@
                 <div class="post-item post-item-no-divider">
                     <div class="post-item-info-wrapper">
                         <div class="post-item-title">
-                            {{.Title}}
+                            {{ .Title }}
                         </div>
                         <div class="post-item-summary">
                             {{ if .Description }}
@@ -17,14 +17,14 @@
                     {{ if $featured_image }}
                         {{ $image := .Resources.GetMatch (.Params.featured_image) }}
                         <div class="post-item-image-wrapper">
-                        <div class="post-item-image"
-                        {{ if $image }}
-                             {{ $thumbnail := $image.Resize "690x360" }}
-                             style="background-image: url('{{ $thumbnail.RelPermalink }}')"
-                        {{ else }}
-                             style="background-image: url('{{ $featured_image | absURL}}')"
-                        {{ end }}
-                        ></div>
+                          <div class="post-item-image"
+                          {{ if $image }}
+                               {{ $thumbnail := $image.Fill "690x360" }}
+                               style="background-image: url('{{ $thumbnail.RelPermalink }}')"
+                          {{ else }}
+                               style="background-image: url('{{ $featured_image | absURL }}')"
+                          {{ end }}
+                          ></div>
                         </div>
                     {{ end }}
                 </div>
